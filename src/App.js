@@ -1,7 +1,12 @@
 import "./App.css";
+import Icon from "./components/Icons";
 
 const App = () => {
-  return <div>Hello World !</div>;
+  return (
+    <div>
+      <Icon />
+    </div>
+  );
 };
 
 export default App;
