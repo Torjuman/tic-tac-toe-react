@@ -6,7 +6,6 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import { Card, CardBody, Container, Button, Row, Col } from "reactstrap";
-import { FaCentercode } from "react-icons/fa";
 const itemArray = new Array(9).fill("empty");
 
 const App = () => {
@@ -20,7 +19,55 @@ const App = () => {
   };
 
   const checkIsWinner = () => {
-    //
+    if (
+      itemArray[0] !== "empty" &&
+      itemArray[0] === itemArray[1] &&
+      itemArray[1] === itemArray[2]
+    ) {
+      setWinMessage(`${itemArray[0]} won`);
+    } else if (
+      itemArray[0] !== "empty" &&
+      itemArray[0] === itemArray[3] &&
+      itemArray[3] === itemArray[6]
+    ) {
+      setWinMessage(`${itemArray[0]} won`);
+    } else if (
+      itemArray[3] !== "empty" &&
+      itemArray[3] === itemArray[4] &&
+      itemArray[4] === itemArray[5]
+    ) {
+      setWinMessage(`${itemArray[3]} won`);
+    } else if (
+      itemArray[6] !== "empty" &&
+      itemArray[6] === itemArray[7] &&
+      itemArray[7] === itemArray[8]
+    ) {
+      setWinMessage(`${itemArray[6]} won`);
+    } else if (
+      itemArray[1] !== "empty" &&
+      itemArray[1] === itemArray[4] &&
+      itemArray[4] === itemArray[7]
+    ) {
+      setWinMessage(`${itemArray[1]} won`);
+    } else if (
+      itemArray[2] !== "empty" &&
+      itemArray[2] === itemArray[5] &&
+      itemArray[5] === itemArray[8]
+    ) {
+      setWinMessage(`${itemArray[2]} won`);
+    } else if (
+      itemArray[0] !== "empty" &&
+      itemArray[0] === itemArray[4] &&
+      itemArray[4] === itemArray[8]
+    ) {
+      setWinMessage(`${itemArray[0]} won`);
+    } else if (
+      itemArray[2] !== "empty" &&
+      itemArray[2] === itemArray[4] &&
+      itemArray[4] === itemArray[6]
+    ) {
+      setWinMessage(`${itemArray[2]} won`);
+    }
   };
 
   const changeItem = (itemNumber) => {
@@ -53,18 +100,18 @@ const App = () => {
               </Button>
             </div>
           ) : (
-            <h1 className="text-center text-warnning">
+            <h1 className="text-center text-warning">
               {isCross ? "Cross" : "Circle"} turns
             </h1>
           )}
           <div className="grid">
-            {itemArray.forEach((item, index) => {
-              <Card>
+            {itemArray.map((item, index) => (
+              <Card color="warning" onClick={() => changeItem(index)}>
                 <CardBody className="box">
                   <Icon name={item} />
                 </CardBody>
-              </Card>;
-            })}
+              </Card>
+            ))}
           </div>
         </Col>
       </Row>
